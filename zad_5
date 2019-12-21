@@ -1,0 +1,63 @@
+"""
+Zaimplementuj klasę `CashMachine` umożliwiającą wpłacanie i wypłacanie pieniędzy.
+ Zadbaj o to aby stan bankomatu przetrzymywany był w zmiennych prywatnych.Przykład użycia:
+>>> cash_machine = CashMachine()
+>>> cash_machine.is_available()
+False
+>>> cash_machine.put_money([200, 100, 100, 50])
+>>> cash_machine.is_available()
+True
+>>> cash_machine.withdraw_money(150)
+[100, 50]
+"""
+class CashMachine:
+    def __init__(self):
+        self.stan = []
+
+    def is_available(self):
+        return bool(self.stan)
+        # if self.stan == []:
+        #     return False
+        # else:
+        #     return True
+
+
+    def put_money(self, banknoty):
+        #self.stan = banknoty
+        self.stan.extend(banknoty)
+
+    def withdraw_money(self, ilosc):
+        pomocnicza = []
+
+        for s in self.stan:
+            if s <=  ilosc:
+                ilosc -= s
+                pomocnicza.append(s)
+        if ilosc !=0:
+            return []
+        for b in pomocnicza:
+            self.stan.remove(b)
+            # for s in self.stan:
+            #     if b == s:
+            #         self.stan.remove(s)
+
+
+        return pomocnicza
+
+        pass
+
+
+cash_machine = CashMachine()
+print(cash_machine.is_available())
+cash_machine.put_money([200, 100, 100, 50])
+print(cash_machine.stan)
+print(cash_machine.is_available())
+print(cash_machine.withdraw_money(150))
+print(cash_machine.stan)
+print(cash_machine.withdraw_money(150))
+print(cash_machine.stan)
+print(cash_machine.withdraw_money(300))
+print(cash_machine.stan)
+
+
+
