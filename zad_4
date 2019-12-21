@@ -26,25 +26,34 @@ class Basket:
     def __init__(self):
         self.zawartosc = []
 
-    def add_product(self, p: Product):
-        self.zawartosc.append(p)
-        pass
+    def add_product(self, p: Product, ilosc: int =1):
+        for s in self.zawartosc:
+            if s['produkt'].id == p.id:
+                s['ilosc'] += ilosc
+                return
+        slownik = {'produkt':p,'ilosc':ilosc}
+        self.zawartosc.append(slownik)
+
+
 
     def count_total_price(self):
-        return sum(p.cena for p in self.zawartosc)
-        # suma = 0
-        # for produkt in self.zawartosc:
-        #     suma += produkt.cena
-        # return suma
+        #return sum(p.cena for p in self.zawartosc)
+        suma = 0
+        for slow in self.zawartosc:
+            suma += slow['produkt'].cena*slow['ilosc']
+        return suma
 
 
-        pass
 
 
 p1 = Product(1, 'Woda', 10.00)
 p2 = Product(2, 'cola', 5.99)
 b = Basket()
+b.add_product(p1,5)
+b.add_product(p2,15)
 b.add_product(p1)
-b.add_product(p2)
 print(b.count_total_price())
+print(b.zawartosc)
+
+
 
