@@ -1,0 +1,20 @@
+"""
+Krzysztof Adamek:speech_balloon: 2:11 PM
+
+# Zadanie 1Napisz program wypisujący na konsolę zawartość wskazanego pliku wraz z numerami linii. Obsłuż sytuację, gdy użytkownik nie poda nazwy pliku lub poda błędną nazwę.Przykład użycia:$ python test.txt
+1: pierwsza linia pliku
+2: druga linia pliku
+"""
+# f  = open('plik.txt')
+# napis = f.read()
+# i=1
+# for x in napis:
+#     print(f'{i}:{napis[x]}')
+#     i+=1
+nazwa = input('podaj nazwe pliku:')
+try:
+    with open(nazwa, encoding='utf-8') as plik:#encoding zmiana krzaczków na litery polskie
+        for nr, line in enumerate(plik,1):
+          print(f'{nr:5} : {line}', end='')
+except FileNotFoundError:
+    print('nie ma takiego pliku')
