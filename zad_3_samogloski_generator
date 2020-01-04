@@ -1,0 +1,13 @@
+def vowels(napis):
+    for znak in napis:
+        if znak.lower() in 'aeiouy':
+            yield (znak)
+    # indeks=0
+    # while indeks < len(napis):
+    #     znak = napis[indeks]
+    #     indeks += 1
+    #     if znak.lower() in 'aeiuoy':
+    #         yield znak
+
+for znak in vowels('ala ma kota'):
+    print(znak)
